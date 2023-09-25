@@ -1,0 +1,129 @@
+function greeting() {
+	console.log("안녕하세요!");
+}
+
+greeting(); //greeting 함수 호출
+
+function getArea(width, height) {
+	let area = width * height;
+	console.log(area);
+}
+
+getArea(10, 20);
+
+function greeting() {
+	function greetingWithName(name) {
+		console.log('hello! ${name}');
+	}
+
+	let name = "차은우";
+	greetingWithName(name);
+}
+
+greeting(); 
+
+func();
+
+function func() {
+	console.log("hello");
+} 
+
+function greetFunc() {
+	console.log("hello");
+}
+
+greetFunc();
+
+let greeting = greetFunc;
+greeting()
+
+function repeat(count, callBack) {
+	for (let idx = 0; idx < count; idx++) {
+		callBack(idx + 1);
+	}
+}
+
+function origin(count) {
+	console.log(count);
+}
+
+repeat(5, origin);
+
+let funcA = (매개변수) => 반환값;
+let funcA = function(매개변수) {
+	return 반환값;
+};
+
+function foo() {
+	console.log("foo");
+}
+
+function bar() {
+	foo();
+	console.log("bar");
+}
+
+bar();
+
+let person = {
+    name: "이정환",
+    age : 25
+  };
+  
+  person.gender = "male"; //점 표기법을 이용한 프로퍼티 추가
+  person["nickname"] = "winterlood"; //괄호 표기법을 이용한 프로퍼티 추가
+
+  let person = {
+    age : 10
+  };
+  
+  let isNameExist = "name" in person;
+  
+  console.log(isNameExist);
+
+let arrA() = new Array(); //배열 생성자
+let arrB() = [];          //배열 리터럴
+
+let person = {
+	name: "이정환"
+};
+
+let man = {
+	name: "이정환"
+};
+
+console.log(person == = man);
+
+let food = ["짜장면", "피자", "치킨"];
+
+for (let i = 0; i < food.length; i++) {
+	console.log(food[i]);
+}
+
+let food = ["짜장면", "피자", "치킨"];
+
+for (let item of food) {
+	console.log(item);
+}
+
+let person = {
+    name: "이정환",
+    age : 25,
+location : "경기도"
+};
+
+const keyArr = Object.keys(person);
+
+console.log(keyArr);
+
+let person = {
+    name: "이정환",
+    age : 25,
+	location : "경기도"
+};
+
+for (let key in person) {
+    const value = person[key];
+    console.log(key, value);
+}
+
