@@ -1,0 +1,132 @@
+// 구조 분해 할당
+let arr = [1, 2, 3];
+let [one, two, three] = arr;
+// 저장된 요솟값을 변수 선언과 동시에 순서대로 할당
+
+// 객체의 구조 분해 할당
+let person = {
+    name: "니니",
+    age: 21,
+    location: "경기도"
+};
+
+let {name, age, location} = person;
+
+// 함수의 매개변수가 객체일 때 구조 분해 할당하기
+function func({name, age, location}){
+    console.log(name, age, location);
+}
+
+let person ={
+    name: "니니",
+    age: 21,
+    location: "경기도"
+};
+
+func(person);
+
+// 스프레드 연산자
+let arrA = [1, 2, 3];
+let arrB = [...arrA, 4, 5, 6];
+
+console.log(arrB); //[1, 2, 3, 4, 5, 6]
+/* 만약 스프레드 연산자 ...arrA로 저장하지 않고 arrB = [arrA, 4, 5, 6]이라면 arrB에는 [[1, 2, 3], 4, 5, 6]이 저장됨
+*/
+
+let objA = {
+  a: 1,
+  b: 2
+};
+
+let objB = {
+  ...objA,
+  c: 3,
+  d: 4
+};
+
+console.log(objB); // {a: 1, b: 2, c: 3, d: 4}
+
+// 스프레드 연산자와 함수
+function func(a, b, c){
+    console.log(a, b, c);
+}
+
+let arr = [1, 2, 3];
+func(...arr);
+
+/* ...arr는 변수 arr에 저장된 배열을 개별 요소로 분리함. 따라서 인수로 3개의 값 1, 2, 3을 전달하는 것과 같은 효과를 얻게 됨
+*/
+
+// rest 매개변수 -스프레드 연산자는 배열이나 객체처럼 반복 가능한 값을 개별 요소로 분리하지만, rest 매개변수는 반대로 개별 요소를 배열로 묶음
+function func(...rest) {
+    console.log(rest);
+  }
+  
+  func(1, 2, 3, 4); // [1, 2, 3, 4]
+
+  // 요소의 추가 및 삭제 메서드
+
+  // push는 배열 맨 끝에 요소를 추가하고 새로운 길이를 반환하는 메서드
+  let food = ["짜장면", "마라탕", "치킨"];
+  const newLength = food.push("피자");
+
+  console.log(food); //["짜장면", "마라탕", "치킨", "피자"]
+
+// pop은 배열의 맨 끝 요소를 제거하고, 제거한 요소를 반환하는 메서드
+let food = ["짜장면", "피자", "치킨"];
+const removedItem = food.pop();
+
+console.log(removedItem); // 치킨
+console.log(food); // ["짜장면", "피자"]
+
+// shift는 pop 메서드와 반대로 배열의 맨 앞 요소를 제거하고, 제거한 요소를 반환하는 메서드
+let food = ["짜장면", "피자", "치킨"];
+const removedItem = food.shift(); // 
+
+console.log(removedItem); // "짜장면"
+console.log(food); // ["피자", "치킨"]
+
+// unshift는 push와 반대로 배열 맨 앞에 요소를 추가하고, 새 배열의 길이를 반환하는 메서드
+let food = ["짜장면", "피자", "치킨"];
+const newLength = food.unshift("갈비찜"); // 
+
+console.log(food); // ["갈비찜", "짜장면", "피자", "치킨"]
+console.log(`새로운 배열의 길이: ${newLength}`); // 새로운 배열의 길이: 4
+
+// slice 메서드는 마치 가위처럼 기존 배열에서 특정 범위를 잘라 새로운 배열을 반환합니다. 이때 원본 배열은 수정되지 않는다는 점에 유의
+
+// concat은 서로 다른 배열을 이어 붙여 새 배열을 반환하는 메서드
+
+// 순회 메서드 forEach는 배열의 모든 요소에 순서대로 접근해 특정 동작을 수행하는 메서드
+
+// 탐색 메서드
+// indexOf는 배열에서 찾으려는 요소의 인덱스를 반환하는 메서드
+
+// includes 메서드는 배열에 특정 요소가 있는지 판별
+let arr = [1, 3, 5, 7, 1];
+
+console.log(arr.includes(3)); // true
+console.log(arr.includes("생선")); // false
+
+// findIndex 메서드는 indexOf처럼 배열에서 찾으려는 요소의 인덱스 번호를 찾아 반환
+
+// filter 메서드는 배열에서 조건을 만족하는 요소만 모아 새로운 배열로 반환하는 메서드
+
+// 변형 메서드
+// map은 배열 각각의 요소에 대한 함수 호출 결과를 모아 새 배열을 만들어 반환하는 메서드
+
+// sort는 배열의 요소를 정렬할 때 사용하는 메서드
+let arr = ["b", "a", "c"];
+
+arr.sort();
+
+console.log(arr); //["a", "b", "c"]
+// sort 메서드는 정렬된 새로운 배열을 반환하는 게 아니라, 기존 배열 요소를 다시 정렬함
+
+// join 메서드는 배열 요소를 모두 연결해 하나의 문자열로 반환
+let arr = ["안녕", "나는", "이정환"];
+
+console.log(arr.join()); // 안녕,나는,이정환 - 인수 생략으로 콤마 기본값 제공
+console.log(arr.join("-")); // 안녕-나는-이정환
+
+// reduce는 배열 요소를 모두 순회하면서 인수로 제공한 함수를 실행하고, 단 하나의 결괏값만 반환하는 메서드 map 메서드와 유사하지만 하나의 결과만을 반환함
