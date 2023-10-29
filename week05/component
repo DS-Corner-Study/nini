@@ -1,0 +1,74 @@
+npx create-react-app .
+
+import "./App.css";
+
+function Header() { 
+  return (
+    <header>
+      <h1>header</h1>
+    </header>
+  ); 
+}
+
+function App() {
+  return <div className="App"></div>;
+}
+
+export default App;
+
+import "./App.css";
+
+const Header = () => { 
+  return (
+    <header>
+      <h1>header</h1>
+    </header>
+  );
+};
+
+function App() {
+  return <div className="App"></div>;
+}
+
+export default App;
+
+import "./App.css";
+
+const Header = () => {
+  (...)
+};
+
+function App() {
+  return (
+    <div className="App">
+      <Header /> 
+    </div>
+  );
+}
+export default App;
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />); 
+
+function Body() {
+  return (
+    <div>
+      <h1>body</h1>
+    </div>
+  );
+}
+export default Body;
+
+function Footer() {
+  return (
+    <footer>
+      <h1>footer</h1>
+    </footer>
+  );
+}
+export default Footer;
