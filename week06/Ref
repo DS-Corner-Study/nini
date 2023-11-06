@@ -1,0 +1,65 @@
+// 리액트의 Ref를 이용하면 돔(DOM) 요소들을 직접 조작할 수 있다
+// useRef 사용하기 
+import { useState } from "react";
+
+function Body() {
+  const [text, setText] = useState("");
+
+  const handleOnChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleOnClick = () => {
+    alert(text);
+  };
+
+  return (
+    <div>
+      <input value={text} onChange={handleOnChange} />
+      <button onClick={handleOnClick}>작성 완료</button>
+    </div>
+  );
+}
+export default Body;
+
+// useRef로 입력 폼 초기화하기
+import { useRef, useState } from "react";
+
+function Body() {
+  (...)
+  const handleOnClick = () => {
+    alert(text);
+    textRef.current.value = "";
+  };
+  (...)
+}
+export default Body;
+
+// useRef로 포커스하기
+import { useRef, useState } from "react";
+
+function Body() {
+  const [text, setText] = useState("");
+  const textRef = useRef();
+
+  const handleOnChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleOnClick = () => {
+    if (text.length < 5) {
+      textRef.current.focus(); ①
+    } else {
+      alert(text);
+      setText(""); ②
+    }
+  };
+
+  return (
+    <div>
+      <input ref={textRef} value={text} onChange={handleOnChange} />
+      <button onClick={handleOnClick}>작성 완료</button>
+    </div>
+  );
+}
+export default Body;
