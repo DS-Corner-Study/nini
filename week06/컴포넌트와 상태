@@ -1,0 +1,128 @@
+// useState의 용법
+const [light, setLight] = useState('off');
+      State 변수 set 함수 생성자(초깃값)
+
+// set 함수로 State 값 변경하기
+import { useState } from "react";
+
+function Body() {
+  const [count, setCount] = useState(0); 
+
+  const onIncrease = () => { ①
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <h2>{count}</h2>
+      <button onClick={onIncrease}>+</button>
+    </div>
+  );
+}
+export default Body;
+
+import { useState } from "react";
+
+function Body() {
+  console.log("Update!"); ①
+
+  const [count, setCount] = useState(0);
+
+  const onIncrease = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <h2>{count}</h2>
+      <button onClick={onIncrease}>+</button>
+    </div>
+  );
+}
+export default Body;
+
+// <input> 태그로 텍스트 입력하기
+import { useState } from "react";
+
+function Body() {
+  const handleOnChange = (e) => { ①
+    console.log(e.target.value);
+  };
+  return (
+    <div>
+      <input onChange={handleOnChange} /> ②
+    </div>
+  );
+}
+export default Body;
+
+// <input> 태그로 날짜 입력하기
+import { useState } from "react";
+
+function Body() {
+  const [date, setDate] = useState("");
+  const handleOnChange = (e) => {
+    console.log("변경된 값: ", e.target.value);
+    setDate(e.target.value);
+  };
+  return (
+    <div>
+      <input type="date" value={date} onChange={handleOnChange} />
+    </div>
+  );
+}
+
+export default Body;
+
+// 드롭다운 상자로 여러 옵션 중에 하나 선택하기
+import { useState } from "react";
+
+function Body() {
+  const [option, setOption] = useState("");
+  const handleOnChange = (e) => {
+    console.log("변경된 값: ", e.target.value);
+    setOption(e.target.value);
+  };
+
+  return (
+    <div>
+      <select value={option} onChange={handleOnChange}>
+        <option key={"1번"}>1번</option>
+        <option key={"2번"}>2번</option>
+        <option key={"3번"}>3번</option>
+      </select>
+    </div>
+  );
+}
+export default Body;
+
+// State와 자식 컴포넌트
+import { useState } from "react";
+
+function Viewer() { ①
+  console.log("viewer component update!");
+  return <div>Viewer</div>;
+}
+
+function Body() {
+  const [number, setNumber] = useState(0);
+  const onIncrease = () => {
+    setNumber(number + 1);
+  };
+  const onDecrease = () => {
+    setNumber(number - 1);
+  };
+
+  return (
+    <div>
+      <h2>{number}</h2>
+      <Viewer /> ②
+      <div>
+        <button onClick={onDecrease}>-</button>
+        <button onClick={onIncrease}>+</button>
+      </div>
+    </div>
+  );
+}
+
+export default Body;

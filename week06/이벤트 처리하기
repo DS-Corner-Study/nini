@@ -1,0 +1,45 @@
+// 이벤트 핸들링은 이벤트가 발생하면 특정 코드가 동작하도록 만드는 작업
+
+// 리액트의 이벤트 핸들링
+function Body() {
+    function handleOnClick() { ①
+      alert("버튼을 클릭하셨군요!");
+    }
+  
+    return (
+      <div className="body">
+        <button onClick={handleOnClick}>클릭하세요</button> ②
+      </div>
+    );
+  }
+  export default Body;
+
+  // HTML, 자바스크립트를 사용할 때의 이벤트 핸들러 설정
+<button onclick="handleOnClick()">
+Click Me!
+</button>
+
+// 리액트를 사용할 때의 이벤트 핸들러 설정
+<button onClick={handleOnClick}>클릭하세요</button>
+// 이벤트 핸들러 표기에서 HTML은 onclick이지만 리액트는 카멜 케이스 문법에 따라 onClick으로 표기
+
+// 이벤트 객체 사용하기
+function Body() {
+    function handleOnClick(e) { ①
+      console.log(e.target.name);
+    }
+    return (
+      <div className="body">
+        <button name="A버튼" onClick={handleOnClick}> ②
+          A 버튼
+        </button>
+        <button name="B버튼" onClick={handleOnClick}> ③
+          B 버튼
+        </button>
+      </div>
+    );
+  }
+  
+  export default Body;
+
+  
