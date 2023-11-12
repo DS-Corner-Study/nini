@@ -1,0 +1,49 @@
+// State를 이용해 카운터 기능 구현하기
+// 버튼 클릭 이벤트가 발생했을 때 컴포넌트 값을 동적으로 렌더링하려면 리액트의 State 사용
+// State는 반드시 컴포넌트 함수 안에 만들어야 한다
+// State 변수 count를 Viewer 컴포넌트에 전달해야 하는데, Viewer와 Controller컴포넌트는 부모-자식 관계가 아니므로 그렇게 할 수 없습니다.
+import "./App.css";
+import { useState } from "react";
+import Controller from "./component/Controller";
+import Viewer from "./component/Viewer";
+
+function App() {
+  const [count, setCount] = useState(0);
+  const handleSetCount = (value) => {
+    setCount(count + value);
+  };
+
+  return (
+    <div className="App">
+      <h1>Simple Counter</h1>
+      <section>
+        <Viewer count={count} /> ①
+      </section>
+      <section>
+        <Controller handleSetCount={handleSetCount} /> ②
+      </section>
+    </div>
+  );
+}
+export default App;
+// 리액트는 State 값이나 set함수를 여러 컴포넌트에서 사용하는 경우, 이들을 상위 컴포넌트에서 관리합니다. 리액트에서는 이 기능을 다른 말로 ‘State 끌어올리기(State Lifting)’라고 합니다.
+// 리액트에서 컴포넌트 간에 데이터를 전달할 때는 Props 사용
+// 전달방향은 언제나 부모로부터 자식에게 전달하는 방식 -> 단방향 데이터 흐름
+// 반면 State를 변경하는 이벤트는 자식에서 부모를 향해 역방향으로 전달되어야 한다
+
+// 리액트 컴포넌트의 라이프 사이클
+// 1. 마운트: 컴포넌트를 페이지에 처음 렌더링할 때
+// 2. 업데이트: State니 Props의 값이 바뀌거나 부모 컴포넌트가 리렌더해 자신도 리렌더될 때
+// 3. 언마운트: 더 이상 페이지에 컴포넌트를 렌더링하지 않을 때
+
+// useEffect는 어떤 값이 변경될 때마다 특정 코드를 실행하는 리액트 훅
+// useEffect의 용법
+useEffect(callback, [deps])
+          // 콜백 함수 의존성 배열
+
+// useEffect에서 의존성 배열을 인수로 전달하지 않으면 마운트, 업데이트 시점 모두 콜백함수 호출함
+
+// useEffect의 콜백함수가 반환하는 함수 -> 클린업 함수
+// 컴포넌트를 렌더링할 때마다 새 인터벌을 생성하고 기존 인터벌은 삭제
+
+
