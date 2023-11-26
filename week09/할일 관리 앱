@@ -1,0 +1,69 @@
+Header 컴포넌트 만들기
+const Header = () => {
+  return <div className="Header">Header Component</div>;
+};
+export default Header;
+
+TodoEditor 컴포넌트 만들기
+import "./TodoEditor.css";
+
+const TodoEditor = () => {
+  return (
+    <div className="TodoEditor">
+      <h4>새로운 Todo 작성하기 ✏️ </h4>
+      <div className="editor_wrapper">
+        <input placeholder="새로운 Todo..." />
+        <button>추가</button>
+      </div>
+    </div>
+  );
+};
+export default TodoEditor;
+
+TodoList, TodoItem 컴포넌트 만들기
+import "./TodoList.css";
+
+const TodoList = () => {
+  return (
+    <div className="TodoList">
+      <h4>Todo List 🌱</h4>
+      <input className="searchbar" placeholder="검색어를 입력하세요" />
+    </div>
+  );
+};
+export default TodoList;
+
+import "./TodoItem.css";
+
+const TodoItem = () => {
+  return (
+    <div className="TodoItem">
+      <div className="checkbox_col"> ①
+        <input type="checkbox" />
+      </div>
+      <div className="title_col">할 일</div> ②
+      <div className="date_col">{new Date().toLocaleDateString()}</div> ③
+      <div className="btn_col"> ④
+        <button>삭제</button>
+      </div>
+    </div>
+  );
+};
+export default TodoItem
+
+컴포넌트별로 구현해야 할 기능
+App 컴포넌트: 할 일 데이터 관리하기
+Header 컴포넌트: 오늘의 날짜 표시
+TodoEditor 컴포넌트: 새로운 할 일 아이템 생성
+TodoList 컴포넌트: 검색에 따라 필터링된 할 일 아이템 렌더링
+TodoItem 컴포넌트: 할 일 아이템의 수정 및 삭제
+
+데이터를 다루는 4개의 기능, 즉 추가(Create), 조회(Read), 수정(Update), 삭제(Delete) 기능을 앞글자만 따서 CRUD라고 함
+CRUD는 데이터 처리의 기본 기능으로, 웹 서비스라면 기본적으로 갖추고 있어야 한다
+Create: 할 일 아이템 생성 
+Read: 할 일 아이템 렌더링 
+Update: 할 일 아이템 수정 
+Delete: 할 일 아이템 삭제 
+
+목 데이터 설정하기
+목(Mock) 데이터란 모조품 데이터라는 뜻으로, 기능을 아직 개발하지 않아 데이터가 없는 상황일 때 목 데이터를 사용
