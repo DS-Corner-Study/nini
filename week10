@@ -1,0 +1,103 @@
+Read: 할 일 리스트 렌더링하기
+배열을 리스트로 렌더링하기
+function App() {
+  (...)
+  return (
+    <div className="App">
+      <Header />
+      <TodoEditor onCreate={onCreate} />
+      <TodoList todo={todo} />
+    </div>
+  );
+}
+export default App;
+map을 이용한 HTML 반복하기
+import TodoItem from "./TodoItem";
+import "./TodoList.css";
+
+const TodoList = ({ todo }) => { ①
+  return (
+    <div className="TodoList">
+      <h4>Todo List 🌱</h4>
+      <input className="searchbar" placeholder="검색어를 입력하세요" />
+      <div className="list_wrapper">
+        {todo.map((it) => ( ②
+          <div>{it.content}</div>
+        ))}
+      </div>
+    </div>
+  );
+};
+export default TodoList;
+map을 이용해 컴포넌트 반복하기
+import TodoItem from "./TodoItem";
+import "./TodoList.css";
+
+const TodoList = ({ todo }) => { 
+  return (
+    <div className="TodoList">
+      <h4>Todo List 🌱</h4>
+      <input className="searchbar" placeholder="검색어를 입력하세요" />
+      <div className="list_wrapper">
+        {todo.map((it) => (
+          <TodoItem {...it} /> ①
+        ))}
+      </div>
+    </div>
+  );
+};
+export default TodoList;
+key 설정하기
+import TodoItem from "./TodoItem";
+import "./TodoList.css";
+
+const TodoList = ({ todo }) => {
+  return (
+    <div className="TodoList">
+      (...)
+      <div className="list_wrapper">
+        {todo.map((it) => (
+          <TodoItem key={it.id} {...it} /> ①
+b        ))}
+      </div>
+    </div>
+  );
+};
+export default TodoList;
+대소 문자를 구별하지 않게 하기
+(...)
+const getSearchResult = () => {
+    return search === ""
+      ? todo
+      : todo.filter((it) =>
+          it.content.toLowerCase().includes(search.toLowerCase()) ①
+        );
+  };
+(...)
+
+Update: 할 일 수정하기
+기능 흐름
+사용자가 TodoItem의 체크박스에 틱(체크 표시)합니다.
+TodoItem 컴포넌트는 함수 onUpdate를 호출하고 어떤 체크박스에 틱이 발생했는지 해당 아이템의 id를 인수로 전달합니다. 물론 그 전에 함수 onUpdate를 App 컴포넌트에서 Props로 TodoItem에 전달해야 합니다. 
+App 컴포넌트의 함수 onUpdate는 틱이 발생한 아이템의 상태(완료 또는 미완료)를 토글하기 위해 State 값을 업데이트합니다. 
+App 컴포넌트의 State 값이 변경되면 TodoList에 전달하는 Props의 값 또한 변경됩니다. 
+TodoList는 변경된 State 값을 다시 리스트로 렌더링합니다. 결과적으로 수정 사항이 반영됩니다.
+
+Delete: 할 일 삭제하기
+아이템 삭제 함수 만들기
+(...)
+function App() {
+  (...)
+  const onDelete = (targetId) => { ①
+    setTodo(todo.filter((it) => it.id !== targetId));
+  };
+
+  return (
+    <div className="App">
+      <Header />
+      <TodoEditor onCreate={onCreate} />
+      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} /> ②
+    </div>
+  );
+}
+export default App;
